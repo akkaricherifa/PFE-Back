@@ -91,24 +91,6 @@ getAdherent = async(req, res) => {
 };
 
 
-// updateCompetence = async (req, res) => {
-//   const competence = await CompetenceModel.findByIdAndUpdate(req.params.id,{
-//       competence.
-
-//   },);
-//   if (competence) {
-   
-
-//     const updatedcompetence = await competence.save();
-
-//     res.json(updatedcompetence);
-//   } else {
-//     res.status(404);
-//     throw new Error("Adherent not found");
-//   }
-// };
-
-
 
 module.exports = {
   createAdherent,

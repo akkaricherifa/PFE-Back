@@ -34,7 +34,7 @@ createEntreprise = async (req, res) => {
     .catch((err) => res.status(400).json("Error Entreprise"));
   };
 
-
+  
   
 module.exports = {
     createEntreprise,  

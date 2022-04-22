@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const { boolean } = require('joi');
 
 // Setup schema
 var adminSchema = mongoose.Schema({

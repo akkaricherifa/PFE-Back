@@ -56,15 +56,15 @@ var candidatSchema = mongoose.Schema({
     },
     university:{
         type: String,
-        default: "Adherent",
+       
     },
     niveauExp:{
         type: String,
-        default: "Adherent",
+      
     },
     experience:{
         type: String,
-        default: "Adherent",
+       
     },
    
 

@@ -3,11 +3,14 @@ const express = require("express");
 const adminModel = require("../model/admin");
 const adherentModel = require("../model/adherent");
 const bcrypt = require("bcryptjs");
-
+const nodemailer = require('nodemailer');
+const candidat = require("../model/candidat");
 const jwt = require("jsonwebtoken");
 const secret = "test";
 const _ = require("lodash");
 const admin = require("../model/admin");
+const { getMaxListeners } = require("pdfkit");
+
 
 //hedhi ili nadhreb aleha
 login = async (req, res, next) => {
@@ -97,11 +100,11 @@ changerpwdadmin = async (req, res, next) => {
     res.header("x-auth-token", token).send(_.pick(admin, ["_id", "email"]));
   }
 
-
 };
-
 
 module.exports = {
   register,
   login,
+  
+
   };
