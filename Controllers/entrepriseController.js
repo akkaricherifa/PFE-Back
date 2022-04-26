@@ -28,12 +28,12 @@ createEntreprise = async (req, res) => {
   };
   
 
+ 
   getEntreprise = async(req, res) => {
     await EntrepriseModel.findById(req.params.id)
     .then(objet => res.status(200).json(objet))
-    .catch((err) => res.status(400).json("Error Entreprise"));
+    .catch((err) => res.status(400).json("Error entreprise"));
   };
-
   
   
 module.exports = {

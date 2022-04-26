@@ -25,10 +25,10 @@ var entrepriseSchema = mongoose.Schema({
         type: String,
         
     },
-    role:{
-        type: String,
-        default: "entreprise",
-    },
+    // role:{
+    //     type: String,
+    //     default: "entreprise",
+    // },
   
    
        
@@ -43,12 +43,6 @@ entrepriseSchema.methods.generateTokens = function() {
     return token;
 };
 
-entrepriseSchema.virtual('id').get(function() {
-    return this._id.toHexString();
 
-});
-entrepriseSchema.set('toJSON', {
-    virtuals: true,
-});
 
 module.exports = mongoose.model('entreprise', entrepriseSchema)

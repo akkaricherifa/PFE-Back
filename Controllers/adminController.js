@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const adminModel = require("../model/admin");
 const adherentModel = require("../model/adherent");
+const entrepriseModel=require("../model/entreprise");
 const bcrypt = require("bcryptjs");
 const nodemailer = require('nodemailer');
 const candidat = require("../model/candidat");
@@ -9,32 +10,62 @@ const jwt = require("jsonwebtoken");
 const secret = "test";
 const _ = require("lodash");
 const admin = require("../model/admin");
+
 const { getMaxListeners } = require("pdfkit");
 
 
 //hedhi ili nadhreb aleha
 login = async (req, res, next) => {
+  let entreprise =await  entrepriseModel.findOne({emailEnt:req.body.email});
   let admin = await adherentModel.findOne({ email: req.body.email });
-  if (!admin) {
-    return res.status(400).json({ message: "Invalid Email or Password " });
-  }
-  const checkPassword = await bcrypt.compare(req.body.password, admin.password);
-  if (!checkPassword) {
-    return res.status(400).json({ message: "Invalid Email or Password " });
-  }
+  if(!entreprise && !admin){return res.status(400).json({ message: "User  not found" });}
 
-  const token = admin.generateTokens();
+  if(admin){
+    console.log("hello");
+   const checkPassword = await bcrypt.compare(req.body.password, admin.password);
+   if (!checkPassword) {
+     return res.status(400).json({ message: "Invalid Email or Password " });
+   }
+ 
+   const token = admin.generateTokens();
+ 
+   // await admin.save();
+   res.status(200).json({
+     token: token,
+     admin: {
+       _id: admin.id,
+       email: admin.email,
+       role: admin.role,
+     },
+   })};
+  
+  
+
+  
+   if(entreprise){const checkPassword = await bcrypt.compare(req.body.password, entreprise.password);
+     if (!checkPassword) {
+    return res.status(400).json({ message: "Invalid Email or Password " });}
+    const token = entreprise.generateTokens();
 
   // await admin.save();
   res.status(200).json({
     token: token,
-    admin: {
-      _id: admin.id,
-      email: admin.email,
-      role: admin.role,
+    entreprise: {
+      _id: entreprise.id,
+      email: entreprise.emailEnt,
+      // role: admin.role,
     },
   });
-};
+  }
+  
+
+
+
+ 
+}
+  
+  
+
 
 register = async (req, res) => {
   const oldadmin = await adminModel.findOne({ email: req.body.email });
@@ -102,9 +133,51 @@ changerpwdadmin = async (req, res, next) => {
 
 };
 
+sendMail=async(req,res)=>{
+  console.log(req.body.email);
+  let transporter= nodemailer.createTransport({
+  service:'gmail',
+  auth:{
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD
+  }
+})
+
+let mailOptions= {
+ from:'arsii.isitcom21@gmail.com',
+ to:req.body.email,
+ subject:'Invitation à un entretien à L Association ARSII',
+ text :"Bonjour Prenom et nom de Candidat"+","+"\r\n" + 
+ "\r\n" + 
+ "Nous vous remercions pour votre candidature .\r\n" + 
+ "\r\n" + 
+ "Après examen de votre Dossier, Nous sommes intéressés par votre Profil et souhaitons vous rencontrer personnellement.\r\n" + 
+ "\r\n" + 
+ "Nous avons le plaisir de vous convier à un entretien d'embauche  . \r\n" + 
+ "\r\n" + 
+ "Je vous enverrai une invitation dès que j'aurai reçu le calendrier des disponibilités des gestionnaires..\r\n" + 
+ "\r\n" + 
+ "Si vous avez des questions, n'hésitez pas à me contacter par téléphone ou par courriel.\r\n" + 
+ "\r\n" + 
+ "\r\n" + 
+ "\r\n" + 
+ "Avec nos meilleures Salutations"
+
+};
+
+transporter.sendMail(mailOptions,function(err,data) {
+  if (err) {
+    console.log('Error Occurs', err);
+  } else {
+    console.log('Email sent !!!!!!!!!');
+  }
+});
+}
+
 module.exports = {
   register,
   login,
+  sendMail
   
 
   };

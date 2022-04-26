@@ -8,7 +8,7 @@ var competenceSchema = mongoose.Schema({
         required: true
     },
     
-    score: {
+    niveau: {
         type:String,
         required: true,
         default:0
