@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const { date } = require('joi');
 
 // Setup schema
 var formationSchema = mongoose.Schema({
     
-    nomF: {
+    nomformation: {
         type: String,
         
     },
@@ -25,6 +26,9 @@ var formationSchema = mongoose.Schema({
         type: String,
      
   
+    },
+    prix: {
+        type: String,
     },
  
    
