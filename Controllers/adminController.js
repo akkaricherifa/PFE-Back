@@ -50,10 +50,10 @@ login = async (req, res, next) => {
   // await admin.save();
   res.status(200).json({
     token: token,
-    entreprise: {
+    admin: {
       _id: entreprise.id,
       email: entreprise.emailEnt,
-      // role: admin.role,
+       role: entreprise.role,
     },
   });
   }
