@@ -39,9 +39,13 @@ updateCompetence = async (req, res) => {
       .catch((err) => res.status(400).json("Error getting objet"));
   };
   
- 
+  getCompetence = async(req, res) => {
+    await CompetenceModel.findById(req.params.id)
+    .then(objet => res.status(200).json(objet))
+    .catch((err) => res.status(400).json("Error competence"));
+  };
 
 
 
-  module.exports={updateCompetence,createCompetence,getAllCompetence}
+  module.exports={updateCompetence,createCompetence,getAllCompetence, getCompetence}
 
