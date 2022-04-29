@@ -36,15 +36,9 @@ var formationSchema = mongoose.Schema({
 }, {
     timestamps: true,
 })
-formationSchema.methods.generateTokens = function() {
-    const token = jwt.sign({ _id: this._id }, 'privateKey', { expiresIn: "1h" })
-    return token;
-};
 
-formationSchema.virtual('id').get(function() {
-    return this._id.toHexString();
 
-});
+
 formationSchema.set('toJSON', {
     virtuals: true,
 });

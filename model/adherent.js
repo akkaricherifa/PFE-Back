@@ -12,7 +12,10 @@ var adherentSchema = mongoose.Schema({
         type: String,
       
     },
-    
+    CIN: {
+        type: String,
+      
+    },
     nom: {
         type: String,
         
