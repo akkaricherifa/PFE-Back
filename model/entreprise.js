@@ -25,6 +25,10 @@ var entrepriseSchema = mongoose.Schema({
         type: String,
         
     },
+    adresse: {
+        type: String,
+        
+    },
     role:{
         type: String,
         default: "entreprise",

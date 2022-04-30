@@ -173,11 +173,53 @@ transporter.sendMail(mailOptions,function(err,data) {
   }
 });
 }
+/////////////////////// emaiiil de REJECTION ////////////////////////////////
+// sendDenyMail=async(req,res)=>{
+//   console.log(req.body.email);
+//   let transporter= nodemailer.createTransport({
+//   service:'gmail',
+//   auth:{
+//     user: process.env.EMAIL,
+//     pass: process.env.PASSWORD
+//   }
+// })
+
+// let mailOptions= {
+//  from:'arsii.isitcom21@gmail.com',
+//  to:req.body.email,
+//  subject:'Invitation à un entretien à L Association ARSII',
+//  text :"Bonjour Prenom et nom de Candidat"+","+"\r\n" + 
+//  "\r\n" + 
+//  "Nous vous remercions pour votre candidature .\r\n" + 
+//  "\r\n" + 
+//  "Après examen de votre Dossier, Nous sommes au regret de ne pas pouvoir répondre favorablement à votre demande.\r\n" + 
+//  "\r\n" + 
+//  " Nous conservons votre Curriculum vitae afin de pouvoir vous contacter si un poste susceptible de vous intéresser venait à se présenter . \r\n" + 
+//  "\r\n" + 
+//  "Soyez cependant assuré que cette décision ne met pas en cause vos qualités personnelles, ni meme celles de votre formation..\r\n" + 
+//  "\r\n" + 
+//  "Nous vous souhaitons une pleine réussite dans vos futures recherches .\r\n" + 
+//  "\r\n" + 
+//  "\r\n" + 
+//  "\r\n" + 
+//  "Avec nos meilleures Salutations"
+
+// };
+
+// transporter.sendDenyMail(mailOptions,function(err,data) {
+//   if (err) {
+//     console.log('Error Occurs', err);
+//   } else {
+//     console.log('Email sent !!!!!!!!!');
+//   }
+// });
+// }
 
 module.exports = {
   register,
   login,
-  sendMail
+  sendMail,
+  // sendDenyMail
   
 
   };
