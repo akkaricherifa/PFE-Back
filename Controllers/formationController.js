@@ -46,6 +46,18 @@ updateFormation = async (req, res) => {
     .then(objet => res.status(200).json(objet))
     .catch((err) => res.status(400).json("Error Formation"));
   };
+  deleteFormation = async (req, res) => {
+    const Formation = await FormationModel.findById(req.params.id);
+    console.log(req.param.id);
+  
+    if (Formation) {
+      await Formation.remove();
+      res.json({ message: "Formation removed" });
+    } else {
+      res.status(404);
+      throw new Error("Formation. not found");
+    }
+  };
   
  
 
@@ -55,5 +67,6 @@ updateFormation = async (req, res) => {
     createFormation,
     getAllFormation,
     getFormation,
-    updateFormation
+    updateFormation,
+    deleteFormation
   }
