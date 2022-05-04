@@ -187,7 +187,7 @@ transporter.sendMail(mailOptions,function(err,data) {
 // let mailOptions= {
 //  from:'arsii.isitcom21@gmail.com',
 //  to:req.body.email,
-//  subject:'Invitation à un entretien à L Association ARSII',
+//  subject:'Réponse pour votre Candidature à l'ARSII',
 //  text :"Bonjour Prenom et nom de Candidat"+","+"\r\n" + 
 //  "\r\n" + 
 //  "Nous vous remercions pour votre candidature .\r\n" + 

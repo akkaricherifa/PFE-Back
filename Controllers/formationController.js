@@ -20,9 +20,12 @@ createFormation = async (req, res) => {
 updateFormation = async (req, res) => {
     const Formation = await FormationModel.findById(req.params.id)
     if (Formation) {
-        Formation.nom=req.body.nom||Formation.nom;
-        Formation.score=req.body.score||Formation.score;
-     
+        Formation.nomformation=req.body.nomformation||Formation.nomformation;
+        Formation.date_debut=req.body.date_debut||Formation.date_debut;
+        Formation.date_fin=req.body.date_fin||Formation.date_fin;
+        Formation.duree=req.body.duree||Formation.duree;
+        Formation.formateur=req.body.formateur||Formation.formateur;
+        Formation.prix=req.body.prix||Formation.prix;
   
       const updatedFormation = await Formation.save();
   
@@ -38,9 +41,19 @@ updateFormation = async (req, res) => {
       .then((objet) => res.json(objet))
       .catch((err) => res.status(400).json("Error getting objet"));
   };
+  getFormation = async(req, res) => {
+    await FormationModel.findById(req.params.id)
+    .then(objet => res.status(200).json(objet))
+    .catch((err) => res.status(400).json("Error Formation"));
+  };
   
  
 
 
 
-  module.exports={createFormation,getAllFormation}
+  module.exports={
+    createFormation,
+    getAllFormation,
+    getFormation,
+    updateFormation
+  }
