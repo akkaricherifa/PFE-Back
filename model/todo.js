@@ -14,10 +14,6 @@ var todoSchema = mongoose.Schema({
       
     },
     
-    time: {
-        type: String,
-        
-    },
     completed: {
         type: String,
         

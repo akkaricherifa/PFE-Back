@@ -7,4 +7,5 @@ router.delete("/:id", AdherentController.deleteAdherent);
 router.put("/:id", AdherentController.updateAdherent);
 router.get("/", AdherentController.getAllAdherent);
 router.get("/:id",AdherentController.getAdherent);
+router.put("change/:id",AdherentController.changerpwdsuser);
 module.exports = router;

@@ -90,12 +90,34 @@ getAdherent = async(req, res) => {
   .catch((err) => res.status(400).json("Error getting Adherent"));
 };
 
-
-
+changerpwdsuser = async (req, res, next) => {
+  const adherent = await adherentModel.findOne({ email: req.body.email });
+  if (!adherent) {
+    return res.status(400).json({ message: "Email doesn't exists" });
+  }
+  const checkPassword = await bcrypt.compare(req.body.password, adherent.password);
+  if (!checkPassword) {
+    return res.status(400).json({ message: "Invalid Email or Password " });
+  }
+  const salt = await bcrypt.genSalt(10);
+  const verifPassword = await bcrypt.compare(
+    req.body.oldpassword,
+    adherent.password
+  );
+  if (!verifPassword) {
+    return res.status(400).json({ message: "Invalid old password " });
+  } else {
+    adherent.password = await bcrypt.hash(req.body.Confirmpassword, salt);
+    await adherent.save();
+    const token = adherent.generateTokens();
+    res.header("x-auth-token", token).send(_.pick(adherent, ["_id", "email"]));
+  }
+  };
 module.exports = {
   createAdherent,
   deleteAdherent,
   updateAdherent,
   getAllAdherent,
   getAdherent,
-};
+  changerpwdsuser
+}

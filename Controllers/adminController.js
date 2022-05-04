@@ -83,7 +83,7 @@ register = async (req, res) => {
   const token = admin.generateTokens();
   res.header("x-auth-token", token).send(_.pick(admin, ["_id", "email"]));
 };
-changerpwdsuper = async (req, res, next) => {
+changerpwdsuser = async (req, res, next) => {
   const admin = await adminModel.findOne({ email: req.body.email });
   if (!admin) {
     return res.status(400).json({ message: "Email doesn't exists" });
