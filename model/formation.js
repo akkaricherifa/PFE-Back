@@ -30,6 +30,9 @@ var formationSchema = mongoose.Schema({
     prix: {
         type: String,
     },
+    lieu: {
+        type: String,
+    },
  
    
    

@@ -9,10 +9,6 @@ var todoSchema = mongoose.Schema({
         type: String,
         
     },
-    description: {
-        type: String,
-      
-    },
     
     completed: {
         type: String,
