@@ -11,6 +11,7 @@ const candidatRoute = require("./Routes/candidatRoute");
 const entrepriseRoute = require("./Routes/entrepriseRoute");
 const formationRoute = require("./Routes/formationRoute");
 const todoRoute= require("./Routes/todoRoute");
+const suggestionRoute= require("./Routes/suggestionRoute");
 require('dotenv').config();
 var uploadRoute = require("./Routes/uploadRoute");
 
@@ -26,6 +27,7 @@ app.use("/candidat",candidatRoute);
 app.use("/entreprise",entrepriseRoute);
 app.use("/competence",competenceRoute);
 app.use("/formation",formationRoute);
+app.use("/suggestion",suggestionRoute);
 app.use("/todo",todoRoute);
 app.use("/", uploadRoute);
 
