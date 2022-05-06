@@ -5,7 +5,7 @@ const { date } = require('joi');
 // Setup schema
 var formationSchema = mongoose.Schema({
     
-    nomformation: {
+    title: {
         type: String,
         
     },
