@@ -141,8 +141,8 @@ sendMail=async(req,res)=>{
 let mailOptions= {
  from:'arsii.isitcom21@gmail.com',
  to:req.body.email,
- subject:'Invitation à un entretien à L Association ARSII',
- text :"Bonjour Prenom et nom de Candidat"+","+"\r\n" + 
+ subject:'Invitation à un Entretien à L Association ARSII',
+ text :"Bonjour Cher Candidat"+","+"\r\n" + 
  "\r\n" + 
  "Nous vous remercions pour votre candidature .\r\n" + 
  "\r\n" + 
@@ -156,7 +156,7 @@ let mailOptions= {
  "\r\n" + 
  "\r\n" + 
  "\r\n" + 
- "Avec nos meilleures Salutations"
+ "Avec nos Meilleures Salutations"
 
 };
 transporter.sendMail(mailOptions,function(err,data) {
@@ -181,8 +181,8 @@ sendDenyMail=async(req,res)=>{
 let mailOptions= {
  from:'arsii.isitcom21@gmail.com',
  to:req.body.email,
- subject:'Réponse pour votre Candidature à ARSII',
- text :"Bonjour cher Candidat"+","+"\r\n" + 
+ subject:'Réponse pour Votre Candidature à ARSII',
+ text :"Bonjour Cher Candidat"+","+"\r\n" + 
  "\r\n" + 
  "Nous vous remercions pour votre candidature .\r\n" + 
  "\r\n" + 
@@ -196,7 +196,7 @@ let mailOptions= {
  "\r\n" + 
  "\r\n" + 
  "\r\n" + 
- "Avec nos meilleures Salutations"
+ "Avec nos Meilleures Salutations"
 
 };
 transporter.sendMail(mailOptions,function(err,data) {

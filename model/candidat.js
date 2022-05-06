@@ -66,25 +66,9 @@ var candidatSchema = mongoose.Schema({
         type: String,
        
     },
-   
-
-    
-   
-   
 }, {
     timestamps: true,
 })
-candidatSchema.methods.generateTokens = function() {
-    const token = jwt.sign({ _id: this._id }, 'privateKey', { expiresIn: "1h" })
-    return token;
-};
 
-candidatSchema.virtual('id').get(function() {
-    return this._id.toHexString();
-
-});
-candidatSchema.set('toJSON', {
-    virtuals: true,
-});
 
 module.exports = mongoose.model('candidat', candidatSchema)
