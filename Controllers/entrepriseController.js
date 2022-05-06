@@ -28,7 +28,6 @@ createEntreprise = async (req, res) => {
   };
   
 
- 
   getEntreprise = async(req, res) => {
     await EntrepriseModel.findById(req.params.id)
     .then(objet => res.status(200).json(objet))
@@ -36,7 +35,7 @@ createEntreprise = async (req, res) => {
     
   };
 
-  sendMail=async(req,res)=>{
+  sendEmail=async(req,res)=>{
     console.log(req.body.email);
     let transporter= nodemailer.createTransport({
     service:'gmail',
@@ -50,17 +49,17 @@ createEntreprise = async (req, res) => {
    from:emailEnt,
    to:req.body.email,
    subject:'Invitation à un Entretien à Notre Entreprise',
-   text :"Bonjour Prenom et nom de Candidat"+","+"\r\n" + 
+   text :"Bonjour Cher Adhérent"+","+"\r\n" + 
    "\r\n" + 
    " Après examen de votre Dossier, Nous sommes intéressés par votre Profil et souhaitons vous rencontrer personnellement.\r\n" + 
    "\r\n" + 
-   "jjjjjjjjjjjjjjjjjjjjjjjjjj.\r\n" + 
+   "3anna poste fel 5edma w n7ebouk tkoun enty te5dem fih selon el profil eli andek .\r\n" + 
    "\r\n" + 
    "Nous avons le plaisir de vous convier à un entretien d'embauche si vous êtes intéressée bien sur. \r\n" + 
    "\r\n" + 
    "on vous attend chez nous pour un entretien ..\r\n" + 
    "\r\n" + 
-   "Si vous avez des questions, n'hésitez pas à me contacter par téléphone ou par courriel.\r\n" + 
+   "Si vous avez des questions, n'hésitez pas à nous contacter par téléphone ou par courriel.\r\n" + 
    "\r\n" + 
    "\r\n" + 
    "\r\n" + 
@@ -72,7 +71,7 @@ createEntreprise = async (req, res) => {
     if (err) {
       console.log('Error Occurs', err);
     } else {
-      console.log('message envoyé !!!!!!!!!');
+      console.log('message envoyé !');
     }
   });
   }
@@ -82,6 +81,6 @@ module.exports = {
     createEntreprise,  
     getEntreprise,
     getAllEntreprise,
-    sendMail
+    sendEmail
 
   };

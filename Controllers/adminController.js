@@ -152,7 +152,7 @@ let mailOptions= {
  "\r\n" + 
  "Je vous enverrai une invitation dès que j'aurai reçu le calendrier des disponibilités des gestionnaires..\r\n" + 
  "\r\n" + 
- "Si vous avez des questions, n'hésitez pas à me contacter par téléphone ou par courriel.\r\n" + 
+ "Si vous avez des questions, n'hésitez pas à Nous contacter par téléphone ou par courriel.\r\n" + 
  "\r\n" + 
  "\r\n" + 
  "\r\n" + 
