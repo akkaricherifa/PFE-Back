@@ -38,10 +38,7 @@ login = async (req, res, next) => {
        role: admin.role,
      },
    })};
-  
-  
 
-  
    if(entreprise){const checkPassword = await bcrypt.compare(req.body.password, entreprise.password);
      if (!checkPassword) {
     return res.status(400).json({ message: "Invalid Email or Password " });}
