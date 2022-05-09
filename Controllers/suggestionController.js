@@ -20,7 +20,7 @@ createSuggestion = async (req, res) => {
 updateSuggestion = async (req, res) => {
     const Suggestion = await SuggestionModel.findById(req.params.id)
     if (Suggestion) {
-        Suggestion.titre=req.body.title||Suggestion.titre;
+        Suggestion.titre=req.body.titre||Suggestion.titre;
         Suggestion.content=req.body.content||Suggestion.content;
         
         const updatedSuggestion = await Suggestion.save();

@@ -59,6 +59,11 @@ var adherentSchema = mongoose.Schema({
        
     
     },
+    photo: {
+        type: String,
+       
+    
+    },
     role:{
         type: String,
         default: "Adherent",
