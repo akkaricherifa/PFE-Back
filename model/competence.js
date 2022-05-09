@@ -12,7 +12,7 @@ var competenceSchema = mongoose.Schema({
     niveau: {
         type:String,
         required: true,
-        // default: 0
+        default: 0
     },
     
     
