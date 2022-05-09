@@ -22,6 +22,5 @@ allowedFile:function(req, file, cb) {
     }
     cb(null, true);
 }
-
-
 }
+

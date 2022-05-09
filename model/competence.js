@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const { normalizeNodeOptions } = require('ioredis/built/cluster/util');
 
 // Setup schema
 var competenceSchema = mongoose.Schema({
@@ -11,7 +12,7 @@ var competenceSchema = mongoose.Schema({
     niveau: {
         type:String,
         required: true,
-        default:0
+        // default: 0
     },
     
     

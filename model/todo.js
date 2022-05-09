@@ -14,6 +14,16 @@ var todoSchema = mongoose.Schema({
         type: String,
         
     },
+    time: {
+        type: String,
+        
+    },
+    
+    day: {
+        type: String,
+        
+    },
+ 
  
 }, {
     timestamps: true,
