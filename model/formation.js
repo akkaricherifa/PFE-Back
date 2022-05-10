@@ -13,6 +13,9 @@ var formationSchema = mongoose.Schema({
         type: String,
       
     },
+    heure:{
+        type:String,
+    },
     
     date_fin: {
         type: String,
