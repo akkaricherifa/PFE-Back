@@ -36,12 +36,12 @@ createEntreprise = async (req, res) => {
   };
 
   sendEmail=async(req,res)=>{
-    console.log(req.body.email);
+    console.log(req.body.emailEnt);
     let transporter= nodemailer.createTransport({
     service:'gmail',
     auth:{
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD
+      user: req.body.emailEnt,
+      pass: req.body.password
     }
   })
   

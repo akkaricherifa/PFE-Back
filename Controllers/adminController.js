@@ -19,16 +19,13 @@ login = async (req, res, next) => {
   let entreprise =await  entrepriseModel.findOne({emailEnt:req.body.email});
   let admin = await adherentModel.findOne({ email: req.body.email });
   if(!entreprise && !admin){return res.status(400).json({ message: "User  not found" });}
-
   if(admin){
     console.log("hello");
    const checkPassword = await bcrypt.compare(req.body.password, admin.password);
    if (!checkPassword) {
      return res.status(400).json({ message: "Invalid Email or Password " });
    }
- 
    const token = admin.generateTokens();
- 
    // await admin.save();
    res.status(200).json({
      token: token,
@@ -38,12 +35,10 @@ login = async (req, res, next) => {
        role: admin.role,
      },
    })};
-
    if(entreprise){const checkPassword = await bcrypt.compare(req.body.password, entreprise.password);
      if (!checkPassword) {
     return res.status(400).json({ message: "Invalid Email or Password " });}
     const token = entreprise.generateTokens();
-
   // await admin.save();
   res.status(200).json({
     token: token,
@@ -54,8 +49,6 @@ login = async (req, res, next) => {
     },
   });
   }
-
- 
 }
 
 register = async (req, res) => {

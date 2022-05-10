@@ -9,7 +9,7 @@ var formationSchema = mongoose.Schema({
         type: String,
         
     },
-    date_debut: {
+    date: {
         type: String,
       
     },
