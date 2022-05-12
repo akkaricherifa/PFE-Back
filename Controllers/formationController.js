@@ -20,12 +20,14 @@ createFormation = async (req, res) => {
 updateFormation = async (req, res) => {
     const Formation = await FormationModel.findById(req.params.id)
     if (Formation) {
-        Formation.nomformation=req.body.nomformation||Formation.nomformation;
-        Formation.date_debut=req.body.date_debut||Formation.date_debut;
+        Formation.title=req.body.title||Formation.title;
+        Formation.date=req.body.date||Formation.date;
+        Formation.heure=req.body.heure||Formation.heure;
         Formation.date_fin=req.body.date_fin||Formation.date_fin;
         Formation.duree=req.body.duree||Formation.duree;
         Formation.formateur=req.body.formateur||Formation.formateur;
         Formation.prix=req.body.prix||Formation.prix;
+        Formation.lieu=req.body.lieu||Formation.lieu;
   
       const updatedFormation = await Formation.save();
   
