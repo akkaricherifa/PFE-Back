@@ -34,7 +34,7 @@ updateFormation = async (req, res) => {
       res.json(updatedFormation);
     } else {
       res.status(404);
-      throw new Error("Adherent not found");
+      throw new Error("formation not found");
     }
   };
 
