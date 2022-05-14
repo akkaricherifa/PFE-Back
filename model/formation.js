@@ -45,8 +45,6 @@ var formationSchema = mongoose.Schema({
 
 
 
-formationSchema.set('toJSON', {
-    virtuals: true,
-});
+
 
 module.exports = mongoose.model('formation', formationSchema)

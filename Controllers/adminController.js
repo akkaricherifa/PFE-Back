@@ -129,7 +129,7 @@ sendMail=async(req,res)=>{
 })
 
 let mailOptions= {
- from:'arsii.isitcom21@gmail.com',
+ from:'arsii.recrutement@gmail.com',
  to:req.body.email,
  subject:'Invitation à un Entretien à L Association ARSII',
  text :"Bonjour Cher Candidat"+","+"\r\n" + 
@@ -169,7 +169,7 @@ sendDenyMail=async(req,res)=>{
 })
 
 let mailOptions= {
- from:'arsii.isitcom21@gmail.com',
+ from:'arsii.recrutement@gmail.com',
  to:req.body.email,
  subject:'Réponse pour Votre Candidature à ARSII',
  text :"Bonjour Cher Candidat"+","+"\r\n" + 
