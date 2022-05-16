@@ -17,7 +17,6 @@ var uploadRoute = require("./Routes/uploadRoute");
 
 
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended:false })); 
 app.use(cors());
@@ -30,7 +29,6 @@ app.use("/formation",formationRoute);
 app.use("/suggestion",suggestionRoute);
 app.use("/todo",todoRoute);
 app.use("/", uploadRoute);
-
 
 
 

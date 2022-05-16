@@ -5,23 +5,6 @@ const adherent = require("../model/adherent");
 const CompetenceModel = require("../model/competence");
 
 
-
-// createAdherent = async (req, res) => {
-//   try {
-//     const newAdherent = new AdherentModel(req.body);
-//     await newAdherent.save();
-//     res.status(201).json({
-//       message: "Adherent created",
-//       data: newAdherent,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       message: error.message,
-//     });
-//   }
-// };
-
-
 createAdherent = async (req, res) => {
   const oldAdherent = await AdherentModel.findOne({ email: req.body.email });
   if (oldAdherent) {
@@ -37,6 +20,35 @@ createAdherent = async (req, res) => {
   const token = Adherent.generateTokens();
   res.header("x-auth-token", token).send(_.pick(Adherent, ["_id", "email"]));
 };
+
+participer = async (req, res) => {
+ 
+  console.log(req.params.id);
+  console.log(req.body.id);
+
+ const adherent= await AdherentModel.findById(req.params.id).populate('formation');
+//  console.log(adherent.formation);
+console.log(adherent);
+  // .then(objet =>  res.status(200).json(objet))
+  // .catch((err) => res.status(400).json("Error getting Adherent"));
+
+  if (adherent) {
+    adherent.formation.push(req.body.id)
+    await adherent.save();
+    res.json({ message: "Adherent removed" });
+  } else {
+    res.status(404);
+    throw new Error("Adherent. not found");
+  }
+
+
+}
+
+
+
+
+
+
 
 deleteAdherent = async (req, res) => {
   const Adherent = await AdherentModel.findById(req.params.id);
@@ -85,7 +97,7 @@ getAllAdherent = async (req, res) => {
 };
 
 getAdherent = async(req, res) => {
-  await AdherentModel.findById(req.params.id).populate('competence')
+  await AdherentModel.findById(req.params.id).populate('formation')
   .then(objet => res.status(200).json(objet))
   .catch((err) => res.status(400).json("Error getting Adherent"));
 };
@@ -119,5 +131,6 @@ module.exports = {
   updateAdherent,
   getAllAdherent,
   getAdherent,
-  changerpwdsuser
+  changerpwdsuser,
+  participer
 }

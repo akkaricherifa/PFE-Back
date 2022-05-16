@@ -72,7 +72,13 @@ var adherentSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:'competence',
     
-    }
+    },
+
+    formation:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'formation',
+    
+    }]
    
    
 }, {

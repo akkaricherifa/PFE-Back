@@ -8,4 +8,6 @@ router.put("/:id", AdherentController.updateAdherent);
 router.get("/", AdherentController.getAllAdherent);
 router.get("/:id",AdherentController.getAdherent);
 router.put("change/:id",AdherentController.changerpwdsuser);
+// router.post("/:id", AdherentController.participer);
+router.post("/a/:id", AdherentController.participer);
 module.exports = router;
