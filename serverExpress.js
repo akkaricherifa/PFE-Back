@@ -15,11 +15,18 @@ const suggestionRoute= require("./Routes/suggestionRoute");
 require('dotenv').config();
 var uploadRoute = require("./Routes/uploadRoute");
 
+const fileUpload = require('express-fileupload')
+
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended:false })); 
 app.use(cors());
+
+app.use(fileUpload())
+
+app.use(express.static(process.env.FILE_UPLOAD_PATH))
+
 app.use("/admin",adminRoute);
 app.use("/adherent",adherentRoute);
 app.use("/candidat",candidatRoute);
@@ -29,9 +36,6 @@ app.use("/formation",formationRoute);
 app.use("/suggestion",suggestionRoute);
 app.use("/todo",todoRoute);
 app.use("/", uploadRoute);
-
-
-
 
 app.listen(
   PORT,
