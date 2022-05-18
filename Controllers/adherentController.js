@@ -102,6 +102,39 @@ getAdherent = async(req, res) => {
   .catch((err) => res.status(400).json("Error getting Adherent"));
 };
 
+uploadFile = async (req, res) => {
+  if (!req.files) {
+    res.status(404).json({
+      message: 'please upload a file',
+    });
+  }
+    const file = req.files.file
+
+    if (file.size > process.env.MAX_FILE_UPLOAD) {
+      res.status(400).json({
+        message: 'please upload a file less then ' + process.env.MAX_FILE_UPLOAD,
+      });
+    }
+
+    file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async (err)=>{
+      if (err) {
+        console.log(err)
+        res.status(400).json({
+          message:  err,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        data:file.name
+      });
+
+    }
+    
+    )
+
+
+};
+
 changerpwdsuser = async (req, res, next) => {
   const adherent = await adherentModel.findOne({ email: req.body.email });
   if (!adherent) {
@@ -132,5 +165,6 @@ module.exports = {
   getAllAdherent,
   getAdherent,
   changerpwdsuser,
-  participer
+  participer,
+  uploadFile
 }
