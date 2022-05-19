@@ -30,11 +30,9 @@ var candidatSchema = mongoose.Schema({
     
     ville:{
         type: String,
-      
-  
 
     },
-    pathCv: {
+    file: {
         type: String,
    
       
