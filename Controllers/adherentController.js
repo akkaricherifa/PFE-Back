@@ -27,21 +27,23 @@ participer = async (req, res) => {
   console.log(req.body.event);
 
  const adherent= await AdherentModel.findById(req.params.id).populate({path:'formation'});
-//  console.log(adherent.formation);
-
   // .then(objet =>  res.status(200).json(objet))
   // .catch((err) => res.status(400).json("Error getting Adherent"));
-
   if (adherent) {
     console.log(adherent);
     adherent.formation.push(req.body.event)
     await adherent.save();
-    res.json({ message: "Adherent removed" });
+    res.json({ message: "Adherent succes" });
   } else {
     res.status(404);
-    throw new Error("Adherent. not found");
+    throw new Error("Adherent not found");
   }
-
+}
+getAdherentByFormation = async(req,res) => {
+  console.log(req.params.id);
+  console.log(req.body.event);
+  const adherent=await AdherentModel.find({formation:req.params.id});
+  res.json(adherent)
 
 }
 
@@ -167,5 +169,6 @@ module.exports = {
   getAdherent,
   changerpwdsuser,
   participer,
-  uploadFile
+  uploadFile,
+  getAdherentByFormation
 }

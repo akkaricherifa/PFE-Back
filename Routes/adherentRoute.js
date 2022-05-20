@@ -11,4 +11,5 @@ router.put("change/:id",AdherentController.changerpwdsuser);
 router.post("/upload", AdherentController.uploadFile);
 // router.post("/:id", AdherentController.participer);
 router.post("/a/:id", AdherentController.participer);
+router.get("/get/:id",AdherentController.getAdherentByFormation);
 module.exports = router;
