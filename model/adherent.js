@@ -59,7 +59,7 @@ var adherentSchema = mongoose.Schema({
        
     
     },
-    photo: {
+    file: {
         type: String,
        
     
