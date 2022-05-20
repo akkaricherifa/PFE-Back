@@ -15,6 +15,12 @@ var competenceSchema = mongoose.Schema({
         default: 0
     },
     
+    adherent:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'adherent',
+    
+    },
+
     
 }, {
     timestamps: true,

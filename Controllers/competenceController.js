@@ -4,7 +4,11 @@ const CompetenceModel = require("../model/competence");
 
 createCompetence = async (req, res) => {
     try {
-      const newCompetence = new CompetenceModel(req.body);
+      const newCompetence = new CompetenceModel({
+        nom : req.body.nom,
+        niveau :req.body.niveau,
+        adherent: req.body.adherent
+      });
       await newCompetence.save();
       res.status(201).json({
         message: "Competence created",
@@ -45,7 +49,16 @@ updateCompetence = async (req, res) => {
     .catch((err) => res.status(400).json("Error competence"));
   };
 
+ getCompetenceById= async (req, res) => {
+   await CompetenceModel.find({adherent:req.params.id}).then((obj)=>res.status(200).json(obj))
+   .catch((err)=>res.status(400).json('error getting competence'))
+ }
 
-
-  module.exports={updateCompetence,createCompetence,getAllCompetence, getCompetence}
+  module.exports={
+    updateCompetence,
+    createCompetence,
+    getAllCompetence,
+    getCompetence,
+    getCompetenceById
+  }
 

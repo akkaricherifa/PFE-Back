@@ -27,8 +27,6 @@ participer = async (req, res) => {
   console.log(req.body.event);
 
  const adherent= await AdherentModel.findById(req.params.id).populate({path:'formation'});
-  // .then(objet =>  res.status(200).json(objet))
-  // .catch((err) => res.status(400).json("Error getting Adherent"));
   if (adherent) {
     console.log(adherent);
     adherent.formation.push(req.body.event)
