@@ -21,6 +21,31 @@ createAdherent = async (req, res) => {
   res.header("x-auth-token", token).send(_.pick(Adherent, ["_id", "email"]));
 };
 
+ajoutCompetence2=async(req,res)=>{
+  let data=[]
+  console.log(req.params.id);
+    console.log(req.body.idCompetence);
+   const adherent=await AdherentModel.findById(req.params.id).populate({path:'competence'})
+   if(adherent){
+    adherent.competence.push(req.body.idCompetence)
+    adherent.competence.nom=req.body.nom
+    adherent.competence.niveau=req.body.niveau
+    adherent.save()
+    data.push({
+      nomAdhrent:adherent.nom,
+      nomCompetence:adherent.competence.nom,
+      nomNiveau:adherent.competence.niveau,
+    })
+    res.status(200).json(data)
+
+   }else
+   res.status(400)
+   
+  
+}
+
+
+
 participer = async (req, res) => {
  
   console.log(req.params.id);
@@ -159,6 +184,23 @@ changerpwdsuser = async (req, res, next) => {
     res.header("x-auth-token", token).send(_.pick(adherent, ["_id", "email"]));
   }
   };
+  ajoutCompetence = async (req, res) => {
+    try {
+      const newCompetence = new CompetenceModel({
+        nom : req.body.nom,
+        niveau :req.body.niveau,
+      });
+      await newCompetence.save();
+      res.status(201).json({
+        message: "Competence created",
+        data: newCompetence,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  };
 module.exports = {
   createAdherent,
   deleteAdherent,
@@ -168,5 +210,6 @@ module.exports = {
   changerpwdsuser,
   participer,
   uploadFile,
-  getAdherentByFormation
+  getAdherentByFormation,
+  ajoutCompetence2
 }

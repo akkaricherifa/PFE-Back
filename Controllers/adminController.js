@@ -3,6 +3,7 @@ const express = require("express");
 const adminModel = require("../model/admin");
 const adherentModel = require("../model/adherent");
 const entrepriseModel=require("../model/entreprise");
+const CompetenceModel=require("../model/competence");
 const bcrypt = require("bcryptjs");
 const nodemailer = require('nodemailer');
 const candidat = require("../model/candidat");
@@ -67,6 +68,48 @@ register = async (req, res) => {
   const token = admin.generateTokens();
   res.header("x-auth-token", token).send(_.pick(admin, ["_id", "email"]));
 };
+
+ajouterCompetence = async (req, res) => {
+  try {
+    const newCompetence = new CompetenceModel(req.body);
+    await newCompetence.save();
+    res.status(201).json({
+      message: "Competence  created success",
+      data: newCompetence,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+getAllCompetence = async (req, res) => {
+  await CompetenceModel.find()
+    .then((objet) => res.json(objet))
+    .catch((err) => res.status(400).json("Error getting objet"));
+};
+
+getCompetence = async(req, res) => {
+  await CompetenceModel.findById(req.params.id)
+  .then(objet => res.status(200).json(objet))
+  .catch((err) => res.status(400).json("Error Competence"));
+};
+deleteCompetence = async (req, res) => {
+  const Competence = await CompetenceModel.findById(req.params.id);
+  console.log(req.param.id);
+
+  if (Competence) {
+    await Competence.remove();
+    res.json({ message: "Competence removed" });
+  } else {
+    res.status(404);
+    throw new Error("Competence. not found");
+  }
+};
+
+
+
 
 changerpwdsuser = async (req, res, next) => {
   const admin = await adminModel.findOne({ email: req.body.email });
@@ -202,7 +245,11 @@ module.exports = {
   register,
   login,
   sendMail,
-  sendDenyMail
+  sendDenyMail,
+  ajouterCompetence,
+  getAllCompetence,
+  getCompetence,
+  deleteCompetence
   
 
   };

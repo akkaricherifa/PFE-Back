@@ -7,7 +7,6 @@ createCompetence = async (req, res) => {
       const newCompetence = new CompetenceModel({
         nom : req.body.nom,
         niveau :req.body.niveau,
-        adherent: req.body.adherent
       });
       await newCompetence.save();
       res.status(201).json({

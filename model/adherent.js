@@ -68,11 +68,11 @@ var adherentSchema = mongoose.Schema({
         type: String,
         default: "Adherent",
     },
-    competence:{
+    competence:[{
         type: mongoose.Schema.Types.ObjectId,
         ref:'competence',
     
-    },
+    }],
 
     formation:[{
         type: mongoose.Schema.Types.ObjectId,
