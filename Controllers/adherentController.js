@@ -46,7 +46,7 @@ ajoutCompetence2=async(req,res)=>{
 }
 
 
-
+// **************************************************************************************************
 participer = async (req, res) => {
  
   console.log(req.params.id);
@@ -63,6 +63,7 @@ participer = async (req, res) => {
     throw new Error("Adherent not found");
   }
 }
+// *****************************************************************************************************
 getAdherentByFormation = async(req,res) => {
   console.log(req.params.id);
   console.log(req.body.event);
@@ -70,7 +71,7 @@ getAdherentByFormation = async(req,res) => {
   res.json(adherent)
 
 }
-
+// ******************************************************************************************************
 deleteAdherent = async (req, res) => {
   const Adherent = await AdherentModel.findById(req.params.id);
   console.log(req.param.id);
@@ -83,7 +84,7 @@ deleteAdherent = async (req, res) => {
     throw new Error("Adherent. not found");
   }
 };
-
+// */******************************************************************************** */
 updateAdherent = async (req, res) => {
   const Adherent = await AdherentModel.findById(req.params.id);
   if (Adherent) {
