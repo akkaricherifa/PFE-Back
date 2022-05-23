@@ -20,20 +20,21 @@ createAdherent = async (req, res) => {
   const token = Adherent.generateTokens();
   res.header("x-auth-token", token).send(_.pick(Adherent, ["_id", "email"]));
 };
-
+// //////////////////////hedhi methode bech user yzid compétence mte3ooo/////////////////////////////////////////
 ajoutCompetence2=async(req,res)=>{
   let data=[]
   console.log(req.params.id);
-    console.log(req.body.idCompetence);
+    console.log("nommmmm",req.body.nom);
    const adherent=await AdherentModel.findById(req.params.id).populate({path:'competence'})
-   if(adherent){
-    adherent.competence.push(req.body.idCompetence)
-    adherent.competence.nom=req.body.nom
+   const competence =await CompetenceModel.findById(req.body.nom)
+   if(adherent && competence){
+    adherent.competence.push(req.body.nom)
+    // adherent.competence.nom=req.body.nom
     adherent.competence.niveau=req.body.niveau
     adherent.save()
     data.push({
       nomAdhrent:adherent.nom,
-      nomCompetence:adherent.competence.nom,
+      nomCompetence:competence.nom,
       nomNiveau:adherent.competence.niveau,
     })
     res.status(200).json(data)
@@ -69,12 +70,6 @@ getAdherentByFormation = async(req,res) => {
   res.json(adherent)
 
 }
-
-
-
-
-
-
 
 deleteAdherent = async (req, res) => {
   const Adherent = await AdherentModel.findById(req.params.id);
@@ -160,7 +155,6 @@ uploadFile = async (req, res) => {
 
 
 };
-
 changerpwdsuser = async (req, res, next) => {
   const adherent = await adherentModel.findOne({ email: req.body.email });
   if (!adherent) {
@@ -184,6 +178,7 @@ changerpwdsuser = async (req, res, next) => {
     res.header("x-auth-token", token).send(_.pick(adherent, ["_id", "email"]));
   }
   };
+
   ajoutCompetence = async (req, res) => {
     try {
       const newCompetence = new CompetenceModel({
@@ -201,6 +196,11 @@ changerpwdsuser = async (req, res, next) => {
       });
     }
   };
+
+  getCompetenceById= async (req, res) => {
+    await CompetenceModel.find({adherent:req.params.id}).then((obj)=>res.status(200).json(obj))
+    .catch((err)=>res.status(400).json('error getting competence'))
+  }
 module.exports = {
   createAdherent,
   deleteAdherent,
@@ -211,5 +211,6 @@ module.exports = {
   participer,
   uploadFile,
   getAdherentByFormation,
-  ajoutCompetence2
+  ajoutCompetence2,
+  getCompetenceById
 }
