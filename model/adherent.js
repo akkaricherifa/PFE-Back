@@ -69,6 +69,10 @@ var adherentSchema = mongoose.Schema({
         default: "Adherent",
     },
 
+    // niveauComp:{
+    //     type: String,
+    // },
+
 
 
     competence:[{

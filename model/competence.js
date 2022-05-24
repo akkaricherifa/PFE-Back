@@ -9,12 +9,12 @@ var competenceSchema = mongoose.Schema({
         required: true
     },
     
-
     niveau: {
-        type:Number,
+        type:String,
         required: true,
-        default: 0
+        // default: 0
     },
+    
     
 }, {
     timestamps: true,

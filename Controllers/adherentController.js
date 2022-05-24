@@ -41,10 +41,10 @@ ajoutCompetence2=async(req,res)=>{
  );
 
     
-   const competence =await CompetenceModel.findById(req.body.nom)
+  //  const competence =await CompetenceModel.findById(req.body.nom)
   
 }
-//*************************************************************************** */
+//*********************************************************************************************** */
 
 
 
@@ -123,7 +123,8 @@ getAllAdherent = async (req, res) => {
 };
 
 getAdherent = async(req, res) => {
-  await AdherentModel.findById(req.params.id). populate({ path: 'formation' }).populate({ path: 'competence' })
+  await AdherentModel.findById(req.params.id). populate({ path: 'formation' }).
+  populate({ path: 'competence' })
   .then(objet => res.status(200).json(objet))
   .catch((err) => res.status(400).json("Error getting Adherent"));
 };
