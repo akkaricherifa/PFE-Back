@@ -11,5 +11,7 @@ router.put("change/:id",AdherentController.changerpwdsuser);
 router.post("/upload", AdherentController.uploadFile);
 router.post("/a/:id", AdherentController.participer);
 router.get("/get/:id",AdherentController.getAdherentByFormation);
-router.post("/ajout/:id",AdherentController.ajoutCompetence2);
+router.post("/ajouter",AdherentController.ajoutCompetenceByUser);
+router.get("/comp/:id",AdherentController.getCompetenceById);
+
 module.exports = router;

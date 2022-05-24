@@ -3,7 +3,9 @@ const bcrypt = require("bcryptjs");
 const _ = require("lodash");
 const adherent = require("../model/adherent");
 const CompetenceModel = require("../model/competence");
-
+const NiveauModel = require("../model/niveau");
+// const niveau = require("../model/niveau");
+// const niveau = require("../model/niveau");
 
 createAdherent = async (req, res) => {
   const oldAdherent = await AdherentModel.findOne({ email: req.body.email });
@@ -39,15 +41,61 @@ ajoutCompetence2=async(req,res)=>{
  .catch((err) =>
    res.status(400).json("Error on competence save: " + err)
  );
-
-    
   //  const competence =await CompetenceModel.findById(req.body.nom)
-  
 }
-//*********************************************************************************************** */
 
 
 
+//**********************************************ajoutCompetence jdida************************************************* */
+ajoutCompetenceByUser = async (req,res)=>{
+  const niveauExist= await NiveauModel.findOne({adherent:req.body.adhrent})
+  if(niveauExist){
+    console.log(niveauExist);
+    niveauExist.competence.push(req.body.competence);
+niveauExist.save();
+  }
+
+  else{
+
+  
+  try {
+    const niveau = new NiveauModel(req.body);
+    await niveau.save();
+    res.status(201).json({
+      message: "niveau  created success",
+      data: niveau,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }}
+
+  // let data=[]
+  // console.log(req.params.id);
+  // console.log(req.body.niveau);
+  //   console.log("nommmmm",req.body.nom);
+  //   const niveau = new NiveauModel(req.body
+     
+  //   )
+  //   console.log(niveau);
+  //   niveau.save()
+  //   res.status(200).json(niveau)
+  }
+
+//    const adherent=await AdherentModel.findById(req.params.id).populate({path:'competence'}).then((data)=>{
+//      console.log("here ",data.competence._id);
+//      data.niveau.push(req.body.nom) ; 
+//     //  data.competence.niveau.push(req.body.niveau);
+     
+//       data.save()
+//      .then((user) => res.status(200).json(user))
+//      .catch((err) => res.status(400).json("Error on user save: " + err));
+//  })
+//  .catch((err) =>
+//    res.status(400).json("Error on competence save: " + err)
+//  );
+// }
 
 
 // **************************************************************************************************
@@ -204,9 +252,11 @@ changerpwdsuser = async (req, res, next) => {
   // };
 
   getCompetenceById= async (req, res) => {
-    await CompetenceModel.find({adherent:req.params.id}).then((obj)=>res.status(200).json(obj))
+    await NiveauModel.find({adherent:req.params.id}).then((obj)=>res.status(200).json(obj))
     .catch((err)=>res.status(400).json('error getting competence'))
+
   }
+
 module.exports = {
   createAdherent,
   deleteAdherent,
@@ -218,5 +268,6 @@ module.exports = {
   uploadFile,
   getAdherentByFormation,
   ajoutCompetence2,
-  getCompetenceById
+  getCompetenceById,
+  ajoutCompetenceByUser
 }

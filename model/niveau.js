@@ -6,7 +6,7 @@ const { normalizeNodeOptions } = require('ioredis/built/cluster/util');
 var niveauSchema = mongoose.Schema({
     niveauUser: {
         type: String,
-        required: true
+
     },
 
     adherent:[{
@@ -19,9 +19,7 @@ var niveauSchema = mongoose.Schema({
         ref:'competence',
     
     }],
-
   
-
 }, {
     timestamps: true,
 })
