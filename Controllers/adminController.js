@@ -68,7 +68,7 @@ register = async (req, res) => {
   const token = admin.generateTokens();
   res.header("x-auth-token", token).send(_.pick(admin, ["_id", "email"]));
 };
-
+//************************************************** */ admin ajout une compétence/******************************************************************************* */
 ajouterCompetence = async (req, res) => {
   try {
     const newCompetence = new CompetenceModel(req.body);
@@ -95,6 +95,8 @@ getCompetence = async(req, res) => {
   .then(objet => res.status(200).json(objet))
   .catch((err) => res.status(400).json("Error Competence"));
 };
+
+
 deleteCompetence = async (req, res) => {
   const Competence = await CompetenceModel.findById(req.params.id);
   console.log(req.param.id);
@@ -160,7 +162,21 @@ changerpwdadmin = async (req, res, next) => {
   }
 
 };
+downloadFile=async(req,res)=> {
 
+  http.get(url,function(res){
+    const fileStream = fs.createWriteStream("photo.jpeg");
+res.pipe(fileStream);
+fileStream.on("finish",function() {
+    fileStream.close();
+    console.log("doneeee!!!!!!!!!!!");
+
+});
+})
+
+
+}
+// *****************************************************email de confirmation**********************************
 sendMail=async(req,res)=>{
   console.log(req.body.email);
   let transporter= nodemailer.createTransport({
@@ -249,7 +265,8 @@ module.exports = {
   ajouterCompetence,
   getAllCompetence,
   getCompetence,
-  deleteCompetence
+  deleteCompetence,
+  downloadFile
   
 
   };

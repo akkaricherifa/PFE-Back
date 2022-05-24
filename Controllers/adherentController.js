@@ -24,26 +24,30 @@ createAdherent = async (req, res) => {
 ajoutCompetence2=async(req,res)=>{
   let data=[]
   console.log(req.params.id);
+  console.log(req.body.niveau);
     console.log("nommmmm",req.body.nom);
-   const adherent=await AdherentModel.findById(req.params.id).populate({path:'competence'})
-   const competence =await CompetenceModel.findById(req.body.nom)
-   if(adherent && competence){
-    adherent.competence.push(req.body.nom)
-    // adherent.competence.nom=req.body.nom
-    adherent.competence.niveau=req.body.niveau
-    adherent.save()
-    data.push({
-      nomAdhrent:adherent.nom,
-      nomCompetence:competence.nom,
-      nomNiveau:adherent.competence.niveau,
-    })
-    res.status(200).json(data)
 
-   }else
-   res.status(400)
-   
+   const adherent=await AdherentModel.findById(req.params.id).populate({path:'competence'}).then((data)=>{
+     console.log("here ",data.competence._id);
+     data.competence.push(req.body.nom) ; 
+    //  data.competence.niveau.push(req.body.niveau);
+     
+      data.save()
+     .then((user) => res.status(200).json(user))
+     .catch((err) => res.status(400).json("Error on user save: " + err));
+ })
+ .catch((err) =>
+   res.status(400).json("Error on competence save: " + err)
+ );
+
+    
+   const competence =await CompetenceModel.findById(req.body.nom)
   
 }
+//*************************************************************************** */
+
+
+
 
 
 // **************************************************************************************************
@@ -119,7 +123,7 @@ getAllAdherent = async (req, res) => {
 };
 
 getAdherent = async(req, res) => {
-  await AdherentModel.findById(req.params.id).populate('formation')
+  await AdherentModel.findById(req.params.id). populate({ path: 'formation' }).populate({ path: 'competence' })
   .then(objet => res.status(200).json(objet))
   .catch((err) => res.status(400).json("Error getting Adherent"));
 };
@@ -180,23 +184,23 @@ changerpwdsuser = async (req, res, next) => {
   }
   };
 
-  ajoutCompetence = async (req, res) => {
-    try {
-      const newCompetence = new CompetenceModel({
-        nom : req.body.nom,
-        niveau :req.body.niveau,
-      });
-      await newCompetence.save();
-      res.status(201).json({
-        message: "Competence created",
-        data: newCompetence,
-      });
-    } catch (error) {
-      res.status(500).json({
-        message: error.message,
-      });
-    }
-  };
+  // ajoutCompetence = async (req, res) => {
+  //   try {
+  //     const newCompetence = new CompetenceModel({
+  //       nom : req.body.nom,
+  //       niveau :req.body.niveau,
+  //     });
+  //     await newCompetence.save();
+  //     res.status(201).json({
+  //       message: "Competence created",
+  //       data: newCompetence,
+  //     });
+  //   } catch (error) {
+  //     res.status(500).json({
+  //       message: error.message,
+  //     });
+  //   }
+  // };
 
   getCompetenceById= async (req, res) => {
     await CompetenceModel.find({adherent:req.params.id}).then((obj)=>res.status(200).json(obj))
