@@ -252,7 +252,7 @@ changerpwdsuser = async (req, res, next) => {
   // };
 
   getCompetenceById= async (req, res) => {
-    await NiveauModel.find({adherent:req.params.id}).then((obj)=>res.status(200).json(obj))
+    await NiveauModel.find({adherent:req.params.id}).populate({path:'competence'}).then((obj)=>res.status(200).json(obj))
     .catch((err)=>res.status(400).json('error getting competence'))
 
   }

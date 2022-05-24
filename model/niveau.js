@@ -14,11 +14,11 @@ var niveauSchema = mongoose.Schema({
         ref:'adherent',
     
     }],
-    competence:[{
+    competence:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'competence',
     
-    }],
+    },
   
 }, {
     timestamps: true,
