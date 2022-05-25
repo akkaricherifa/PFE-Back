@@ -61,11 +61,13 @@ deleteCandidat = async (req, res) => {
 
       file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async (err)=>{
         if (err) {
+
           console.log(err)
           res.status(400).json({
             message:  err,
           });
         }
+        
         res.status(200).json({
           success: true,
           data:file.name

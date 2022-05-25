@@ -69,10 +69,6 @@ var adherentSchema = mongoose.Schema({
         default: "Adherent",
     },
 
-    // niveauComp:{
-    //     type: String,
-    // },
-
 
 
     competence:[{
@@ -88,11 +84,11 @@ var adherentSchema = mongoose.Schema({
     }],
 
     
-    // suggestion:[{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref:'suggestion',
+    suggestion:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'suggestion',
     
-    // }],
+    }],
    
    
 }, {
