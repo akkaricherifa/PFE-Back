@@ -67,7 +67,7 @@ deleteCandidat = async (req, res) => {
             message:  err,
           });
         }
-        
+        // nedi lel id mta3 el candidat 
         res.status(200).json({
           success: true,
           data:file.name
