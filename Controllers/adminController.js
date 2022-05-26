@@ -4,6 +4,7 @@ const adminModel = require("../model/admin");
 const adherentModel = require("../model/adherent");
 const entrepriseModel=require("../model/entreprise");
 const CompetenceModel=require("../model/competence");
+const NiveauModel=require("../model/niveau");
 const bcrypt = require("bcryptjs");
 const nodemailer = require('nodemailer');
 const candidat = require("../model/candidat");
@@ -13,6 +14,7 @@ const _ = require("lodash");
 const admin = require("../model/admin");
 
 const { getMaxListeners } = require("pdfkit");
+const niveau = require("../model/niveau");
 
 
 //hedhi ili nadhreb aleha
@@ -84,11 +86,22 @@ ajouterCompetence = async (req, res) => {
   }
 };
 
+// lenna bech njiboooo kol adherent wel comp mte3ooo
+getCompetenceByAdherent = async(req,res) => {
+  await adherentModel.findById(req.params.id);
+  await NiveauModel.find({adherent:req.params.id}).populate({path:'competence'}).then((obj)=>res.status(200).json(obj))
+    .catch((err)=>res.status(400).json('error getting competence'))
+    console.log(req.params.id);
+
+}
+
+
 getAllCompetence = async (req, res) => {
   await CompetenceModel.find()
     .then((objet) => res.json(objet))
     .catch((err) => res.status(400).json("Error getting objet"));
 };
+
 
 getCompetence = async(req, res) => {
   await CompetenceModel.findById(req.params.id)
@@ -266,7 +279,8 @@ module.exports = {
   getAllCompetence,
   getCompetence,
   deleteCompetence,
-  downloadFile
+  downloadFile,
+  getCompetenceByAdherent
   
 
   };
