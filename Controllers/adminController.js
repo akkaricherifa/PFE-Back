@@ -72,6 +72,10 @@ register = async (req, res) => {
 };
 //************************************************** */ admin ajout une compétence/******************************************************************************* */
 ajouterCompetence = async (req, res) => {
+  const oldCompetence = await CompetenceModel.findOne({ nom: req.body.nom});
+  if (oldCompetence){
+    return res.status(400).json({ message : "Competence already exists"})
+  }
   try {
     const newCompetence = new CompetenceModel(req.body);
     await newCompetence.save();
