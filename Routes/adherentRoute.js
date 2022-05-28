@@ -13,5 +13,6 @@ router.post("/a/:id", AdherentController.participer);
 router.get("/get/:id",AdherentController.getAdherentByFormation);
 router.post("/ajouter",AdherentController.ajoutCompetenceByUser);
 router.get("/comp/:id",AdherentController.getCompetenceById);
+router.put("/photo/:id",AdherentController.updatePhoto);
 
 module.exports = router;

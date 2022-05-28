@@ -257,6 +257,19 @@ changerpwdsuser = async (req, res, next) => {
 
   }
 
+  updatePhoto = async (req, res) => {
+    const Adherent = await AdherentModel.findById(req.params.id);
+    if (Adherent) {
+      Adherent.file = req.body.file || Adherent.file;
+      const updatedAdherent = await Adherent.save();
+  
+      res.json(updatedAdherent);
+    } else {
+      res.status(404);
+      throw new Error("Adherent not found");
+    }
+  };
+
 module.exports = {
   createAdherent,
   deleteAdherent,
@@ -269,5 +282,6 @@ module.exports = {
   getAdherentByFormation,
   ajoutCompetence2,
   getCompetenceById,
-  ajoutCompetenceByUser
+  ajoutCompetenceByUser,
+  updatePhoto
 }
