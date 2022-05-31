@@ -98,15 +98,14 @@ getCompetenceByAdherent = async(req,res) => {
     console.log(req.params.id);
 
 };
-// hedhi mta3 rechercheeee *****************
+// hedhi mta3 rechercheeee *****************************************
 getAdherentByCompetence = async(req, res) => {
-  await CompetenceModel.findById(req.params.id);
-  await NiveauModel.find({adherent:req.params.id}).populate({path:'niveau'}).then((obj)=>res.status(200).json(obj))
-    .catch((err)=>res.status(400).json('error getting competence'))
-    console.log(req.params.id);
+  await NiveauModel.find({competence:req.params.id}).populate({path:'adherent'}).then((obj)=>res.status(200).json(obj))
+  .catch((err)=>res.status(400).json('error getting competence'))
+  console.log(req.params.id);
 
 }
-
+  
 getAllCompetence = async (req, res) => {
   await CompetenceModel.find()
     .then((objet) => res.json(objet))
