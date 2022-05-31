@@ -84,11 +84,7 @@ var adherentSchema = mongoose.Schema({
     }],
 
     
-    suggestion:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'suggestion',
-    
-    }],
+  
    
    
 }, {

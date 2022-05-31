@@ -10,4 +10,5 @@ router.get("/", adminC.getAllCompetence);
 router.get("/:id",adminC.getCompetence);
 router.delete("/:id",adminC.deleteCompetence);
 router.get("/comp/:id",adminC.getCompetenceByAdherent);
+router.get("/aa/:id", adminC.getAdherentByCompetence)
 module.exports=router;

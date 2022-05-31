@@ -14,6 +14,11 @@ var suggestionSchema = mongoose.Schema({
         type: String,
         
     },
+    adherent:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'adherent',
+    
+    }],
  
 }, {
     timestamps: true,
