@@ -154,7 +154,7 @@ updateAdherent = async (req, res) => {
     Adherent.telephone = req.body.telephone || Adherent.telephone;
 
     Adherent.address = req.body.address || Adherent.address;
-
+    Adherent.file = req.body.file || Adherent.file;
     const updatedAdherent = await Adherent.save();
 
     res.json(updatedAdherent);
