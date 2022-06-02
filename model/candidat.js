@@ -22,6 +22,10 @@ var candidatSchema = mongoose.Schema({
         type: String,
         
     },
+    password: {
+        type: String,
+        
+    },
     emailCan: {
         type: String,
      
@@ -63,6 +67,10 @@ var candidatSchema = mongoose.Schema({
     experience:{
         type: String,
        
+    },
+    role:{
+        type: String,
+        default: "Candidat",
     },
 }, {
     timestamps: true,
