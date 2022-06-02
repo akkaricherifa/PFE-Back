@@ -82,6 +82,12 @@ var adherentSchema = mongoose.Schema({
         ref:'formation',
     
     }],
+    suggestion:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'suggestion',
+    
+    }],
+
 
     
   

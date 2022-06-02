@@ -1,9 +1,11 @@
 const SuggestionModel = require("../model/suggestion");
+const AdherentModel = require("../model/adherent");
 const bcrypt = require("bcryptjs");
 const _ = require("lodash");
 const suggestion = require("../model/suggestion");
 
 createSuggestion = async (req, res) => {
+  // const adherent= await AdherentModel.findById(req.params.id).populate({path:'suggestion'});
     try {
       const newSuggestion = new SuggestionModel(req.body);
       await newSuggestion.save();
@@ -17,6 +19,21 @@ createSuggestion = async (req, res) => {
       });
     }
   };
+  // createSuggestion = async (req, res) => {
+ 
+  //   console.log(req.params.id);
+  
+  //  const adherent= await AdherentModel.findById(req.params.id).populate({path:'suggestion'});
+  //   if (adherent) {
+  //     console.log(adherent);
+  //     adherent.suggestion.push(req.body.idSugg)
+  //     await adherent.save();
+  //     res.json({ message: "Adherent succes" });
+  //   } else {
+  //     res.status(404);
+  //     throw new Error("Adherent not found");
+  //   }
+  // }
 updateSuggestion = async (req, res) => {
     const Suggestion = await SuggestionModel.findById(req.params.id)
     if (Suggestion) {

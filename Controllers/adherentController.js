@@ -54,10 +54,7 @@ ajoutCompetenceByUser = async (req,res)=>{
     niveauExist.competence.push(req.body.competence);
 niveauExist.save();
   }
-
   else{
-
-  
   try {
     const niveau = new NiveauModel(req.body);
     await niveau.save();
