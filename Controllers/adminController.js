@@ -100,7 +100,7 @@ getCompetenceByAdherent = async(req,res) => {
 };
 // hedhi mta3 rechercheeee *****************************************
 getAdherentByCompetence = async(req, res) => {
-  await NiveauModel.find({competence:req.params.id}).populate({path:'adherent',select:'nom'}).then((obj)=>res.status(200).json(obj))
+  await NiveauModel.find({competence:req.params.id}).populate({path:'adherent'}).then((obj)=>res.status(200).json(obj))
   .catch((err)=>res.status(400).json('error getting competence'))
   console.log(req.params.id);
 
