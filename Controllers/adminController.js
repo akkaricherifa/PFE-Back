@@ -282,7 +282,19 @@ let mailOptions= {
  "\r\n" + 
  "\r\n" + 
  "\r\n" + 
- "Avec nos Meilleures Salutations"
+ "Avec nos Meilleures Salutations"+
+ "\r\n" + 
+ "\r\n" + 
+ "Association ARSII, " +
+ "\r\n" + 
+ "جمعية البحث العلمي و الإبتكار في الإعلامية "+
+ "\r\n" + 
+ "JORT N°59 17 Mai 2016" +
+ "\r\n" + 
+"RIB: TN59 1750 3000 0002 2957 9702" +
+"\r\n" + 
+"Téléphone: (+216) 98 684 033 Fax : (+216) 73 382 658"+
+"\r\n" 
 
 };
 transporter.sendMail(mailOptions,function(err,data) {
