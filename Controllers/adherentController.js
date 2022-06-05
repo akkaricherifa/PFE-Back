@@ -147,13 +147,10 @@ updateAdherent = async (req, res) => {
     Adherent.etablissement = req.body.etablissement || Adherent.etablissement;
     Adherent.telephone = req.body.telephone || Adherent.telephone;
     Adherent.specialite = req.body.specialite || Adherent.specialite;
-    
     Adherent.telephone = req.body.telephone || Adherent.telephone;
-
     Adherent.address = req.body.address || Adherent.address;
     Adherent.file = req.body.file || Adherent.file;
     const updatedAdherent = await Adherent.save();
-
     res.json(updatedAdherent);
   } else {
     res.status(404);
